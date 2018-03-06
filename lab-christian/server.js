@@ -3,7 +3,7 @@
 'use strict';
 
 const express = require('express');
-const debug = require('debug')('cfgram:server');
+const debug = require('debug')('instaclone:server');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');

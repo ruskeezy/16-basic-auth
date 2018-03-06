@@ -1,6 +1,6 @@
 'use strict';
 
-const debug = require('debug')('cfgram:server-toggle');
+const debug = require('debug')('instaclone:server-toggle');
 const mongoose = require('mongoose');
 
 module.exports = exports = {};
