@@ -88,12 +88,14 @@ describe('Auth Routes', function() {
     });
 
     describe('without a valid body', () => {
-      it('should return a 401 error', () => {
+      it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
-          .auth('fake username', 'fake password')
+          .send({})
+          // .auth('fake username', 'fake password')
           .end((err, res) => {
             expect(res.status).toEqual(401);
             expect(res.text).toEqual('UnauthorizedError');
+            done();
           });
       });
     });
