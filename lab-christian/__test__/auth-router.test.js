@@ -47,7 +47,7 @@ describe('Auth Routes', function() {
     
     describe('without a valid request', () => {
       it('should return a 400 error', () => {
-        request.post(`${url}/api/fakeasspath`)
+        request.post(`${url}/api/signup`)
           .send({})
           .end((err, res) =>{
             expect(res.status).toEqual(400);
@@ -83,6 +83,17 @@ describe('Auth Routes', function() {
             expect(res.status).toEqual(200);
             expect(typeof res.text).toEqual('string');
             done();
+          });
+      });
+    });
+
+    describe('without a valid body', () => {
+      it('should return a 401 error', () => {
+        request.get(`${url}/api/signin`)
+          .auth('fake username', 'fake password')
+          .end((err, res) => {
+            expect(res.status).toEqual(401);
+            expect(res.text).toEqual('UnauthorizedError');
           });
       });
     });
