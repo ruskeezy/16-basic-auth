@@ -44,6 +44,17 @@ describe('Auth Routes', function() {
           });
       });
     });
+    
+    describe('without a valid request', () => {
+      it('should return a 400 error', () => {
+        request.post(`${url}/api/fakeasspath`)
+          .send({})
+          .end((err, res) =>{
+            expect(res.status).toEqual(400);
+            expect(res.text).toEqual('BadRequestError');
+          });
+      });
+    });
   });
 
   describe('GET: /api/signin', function() {
