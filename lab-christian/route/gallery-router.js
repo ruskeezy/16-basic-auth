@@ -23,6 +23,8 @@ galleryRouter.post('/api/gallery', bearerAuth, jsonParser, function(req, res, ne
 galleryRouter.get('/api/gallery/:galleryId', bearerAuth, function(req, res, next) {
   debug('GET: /api/gallery/:galleryId');
 
+  if(!req.params.galleryId) return next(createError(404, 'invalid id'));
+
   Gallery.findById(req.params.galleryId)
     .then( gallery => res.json(gallery))
     .catch(next);

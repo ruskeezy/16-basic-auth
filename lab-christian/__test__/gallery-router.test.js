@@ -142,5 +142,25 @@ describe('Gallery Routes', function() {
           done();
         });
     });
+
+    it('should return a 401 if no token was provided', done => {
+      request.get(`${url}/api/gallery/${this.tempGallery._id}`)
+        .end((err, res) => {
+          expect(res.status).toEqual(401);
+          expect(res.text).toEqual('UnauthorizedError');
+          done();
+        });
+    });
+
+    it('should return a 404 if invalid id provided', done => {
+      request.get(`${url}/api/gallery/`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`,
+        })
+        .end((err, res) => {
+          expect(res.status).toEqual(404);
+          done();
+        });
+    });
   });
 });
