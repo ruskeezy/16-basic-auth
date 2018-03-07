@@ -163,4 +163,47 @@ describe('Gallery Routes', function() {
         });
     });
   });
+
+  describe('PUT: /api/gallery/:galleryId', () => {
+    beforeEach( done => {
+      new User(exampleUser)
+        .generatePasswordHash(exampleUser.password)
+        .then( user => user.save())
+        .then( user => {
+          this.tempUser = user;
+          return user.generateToken();
+        })
+        .then( token => {
+          this.tempToken = token;
+          done();
+        })
+        .catch(done);
+    });
+    beforeEach( done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
+        .then( gallery => {
+          this.tempGallery = gallery;
+          done();
+        })
+        .catch(done);
+    });
+
+    it('should return a 200', done => {
+      this.tempGallery.name = 'updaterooni';
+      this.tempGallery.desc = 'desc updaterooni';
+      request.put(`${url}/api/gallery/${this.tempGallery._id}`)
+        .send(this.tempGallery)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`,
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).toEqual(200);
+          expect(res.body.name).toEqual(this.tempGallery.name);
+          expect(res.body.desc).toEqual(this.tempGallery.desc);
+          done();
+        });
+    });
+  });
 });
