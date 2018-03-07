@@ -24,7 +24,7 @@ userSchema.methods.generatePasswordHash = function(password) {
     // bcrypt.hash takes a password, salt level, and a callback function that takes err, hash(hash being the hashed password we just worked with)
     bcrypt.hash(password, 10, (err, hash) => {
       if (err) return reject(err);
-      // set the password passed into method to the hash, resolve promise
+      // sets the hashed password equal to the object's password property, resolve promise
       this.password = hash;
       resolve(this);
     });
