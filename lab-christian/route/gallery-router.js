@@ -27,3 +27,21 @@ galleryRouter.get('/api/gallery/:galleryId', bearerAuth, function(req, res, next
     .then( gallery => res.json(gallery))
     .catch(next);
 });
+
+galleryRouter.put('/api/gallery/:galleryId', bearerAuth, jsonParser, function(req, res, next) {
+  debug('PUT: /api/gallery/:galleryId');
+
+  if (!req.body.name || !req.body.desc) return next(createError(400, 'bad request'));
+
+  Gallery.findByIdAndUpdate(req.params.galleryId)
+    .then( gallery => res.json(gallery))
+    .catch(next);
+});
+
+galleryRouter.delete('/api/gallery/:galleryId', bearerAuth, function(req, res, next) {
+  debug('DELETE: /api/gallery/:galleryId');
+
+  Gallery.findByIdAndRemove(req.params.galleryId)
+    .then( () => res.text('Successfully deleted'))
+    .catch(next);
+});
