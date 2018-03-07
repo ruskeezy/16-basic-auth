@@ -24,6 +24,11 @@ const exampleGallery = {
   desc: 'test gallery desc',
 };
 
+const updatedGallery = {
+  name: 'updaterooni',
+  desc: 'desc updaterooni',
+};
+
 describe('Gallery Routes', function() {
 
   beforeAll(done => {
@@ -190,18 +195,16 @@ describe('Gallery Routes', function() {
     });
 
     it('should return a 200', done => {
-      this.tempGallery.name = 'updaterooni';
-      this.tempGallery.desc = 'desc updaterooni';
       request.put(`${url}/api/gallery/${this.tempGallery._id}`)
-        .send(this.tempGallery)
+        .send(updatedGallery)
         .set({
           Authorization: `Bearer ${this.tempToken}`,
         })
         .end((err, res) => {
           if (err) return done(err);
           expect(res.status).toEqual(200);
-          expect(res.body.name).toEqual(this.tempGallery.name);
-          expect(res.body.desc).toEqual(this.tempGallery.desc);
+          expect(res.body.name).toEqual(updatedGallery.name);
+          expect(res.body.desc).toEqual(updatedGallery.desc);
           done();
         });
     });
