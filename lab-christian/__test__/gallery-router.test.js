@@ -83,6 +83,19 @@ describe('Gallery Routes', function() {
           done();
         });
     });
+
+    it('should return a 400 error if an invalid body was provided', done => {
+      request.post(`${url}/api/gallery`)
+        .send({})
+        .set({
+          Authorization: `Bearer ${this.tempToken}`,
+        })
+        .end((err, res) => {
+          expect(res.status).toEqual(400);
+          expect(res.text).toEqual('BadRequestError');
+          done();
+        });
+    });
   });
 
   describe('GET: /api/gallery/:galleryId', () => {
