@@ -74,6 +74,15 @@ describe('Gallery Routes', function() {
           done();
         });
     });
+
+    it('should return a 401 if no token was provided', done => {
+      request.post(`${url}/api/gallery`)
+        .send(exampleGallery)
+        .end((err, res) => {
+          expect(res.status).toEqual(401);
+          done();
+        });
+    });
   });
 
   describe('GET: /api/gallery/:galleryId', () => {
