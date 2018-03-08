@@ -1,8 +1,6 @@
 'use strict';
 
 const request = require('superagent');
-// const mongoose = require('mongoose');
-// const Promise = require('bluebird');
 const User = require('../model/user');
 const serverToggle = require('../lib/server-toggle');
 const server = require('../server');

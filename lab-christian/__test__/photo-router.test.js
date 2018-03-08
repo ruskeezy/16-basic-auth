@@ -1,7 +1,6 @@
 'use strict';
 
 const request = require('superagent');
-const debug = require('debug')('instaclone:photo-router-test');
 const server = require('../server');
 const serverToggle = require('../lib/server-toggle');
 
@@ -82,7 +81,7 @@ describe('Photo Routes', function() {
         done();
       });
 
-      it('should return an object containing our pic URL', done => {
+      it('should return an object containing our photo URL', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/photo`)
           .set({
             Authorization: `Bearer ${this.tempToken}`,

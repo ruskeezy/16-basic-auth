@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "DEBUG='instaclone*' jest --verbose",
+    "test": "DEBUG='instaclone*' jest -i --verbose",
     "start": "DEBUG='instaclone*' node server.js"
   },
   "keywords": [],

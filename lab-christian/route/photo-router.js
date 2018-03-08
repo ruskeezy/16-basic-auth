@@ -12,6 +12,7 @@ const debug = require('debug')('instaclone:photo-router');
 const Photo = require('../model/photo');
 const Gallery = require('../model/gallery');
 const bearerAuth = require('../lib/bearer-auth-middleware');
+
 const photoRouter = module.exports = Router();
 
 AWS.config.setPromisesDependency(require('bluebird'));
@@ -22,7 +23,7 @@ const upload = multer( { dest: dataDir } );
 
 function s3uploadProm(params) {
   debug('s3uploadProm');
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     s3.upload(params, (err, s3data) => {
       resolve(s3data);
     });
@@ -47,7 +48,7 @@ photoRouter.post('/api/gallery/:galleryId/photo', bearerAuth, upload.single('ima
   Gallery.findById(req.params.galleryId)
     .then( () => s3uploadProm(params))
     .then( s3data => {
-      console.log('s3 respones: ', s3data);
+      console.log('s3 response: ', s3data);
       del([`${dataDir}/*`]);
 
       let photoData = {
