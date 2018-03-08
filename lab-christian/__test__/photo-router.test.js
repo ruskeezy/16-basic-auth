@@ -82,8 +82,8 @@ describe('Photo Routes', function() {
         done();
       });
 
-      it('should return an object containing our pic ULR', done => {
-        request.post(`{url}/api/gallery/${this.tempGallery._id}/photo`)
+      it('should return an object containing our pic URL', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/photo`)
           .set({
             Authorization: `Bearer ${this.tempToken}`,
           })
@@ -96,6 +96,7 @@ describe('Photo Routes', function() {
             expect(res.body.name).toEqual(examplePhoto.name);
             expect(res.body.desc).toEqual(examplePhoto.desc);
             expect(res.body.galleryID).toEqual(this.tempGallery._id.toString());
+            done();
           });
       });
     });
