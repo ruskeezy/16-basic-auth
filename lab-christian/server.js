@@ -10,6 +10,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const galleryRouter = require('./route/gallery-router');
+const photoRouter = require('./route/photo-router');
 const authRouter = require('./route/auth-router');
 const errors = require('./lib/error-middleware');
 
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(galleryRouter);
 app.use(authRouter);
+app.use(photoRouter);
 app.use(errors);
 
 const server = module.exports = app.listen(PORT, () => {
