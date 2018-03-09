@@ -1,7 +1,6 @@
 'use strict';
 
 const request = require('superagent');
-const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const server = require('../server');
 const serverToggle = require('../lib/server-toggle');
@@ -210,7 +209,7 @@ describe('Gallery Routes', function() {
     });
 
     it('should return a 401 error with no token', done => {
-      request.put(`{url}/api/gallery/${this.tempGallery._id}`)
+      request.put(`${url}/api/gallery/${this.tempGallery._id}`)
         .send(exampleGallery)
         .end((err, res) => {
           expect(res.status).toEqual(401);
@@ -219,7 +218,7 @@ describe('Gallery Routes', function() {
     });
 
     it('should return a 400 error without a body', done => {
-      request.put(`{url}/api/gallery/${this.tempGallery._id}`)
+      request.put(`${url}/api/gallery/${this.tempGallery._id}`)
         .set({
           Authorization: `Bearer ${this.tempToken}`,
         })
@@ -230,7 +229,7 @@ describe('Gallery Routes', function() {
     });
 
     it('should return a 404 error with a valid request but no id', done => {
-      request.put(`{url}/api/gallery/1234`)
+      request.put(`${url}/api/gallery/`)
         .send(exampleGallery)
         .set({
           Authorization: `Bearer ${this.tempToken}`,
