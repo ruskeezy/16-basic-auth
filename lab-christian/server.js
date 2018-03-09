@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const express = require('express');
 const debug = require('debug')('instaclone:server');
 const dotenv = require('dotenv');
