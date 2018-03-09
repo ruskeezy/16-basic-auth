@@ -208,5 +208,37 @@ describe('Gallery Routes', function() {
           done();
         });
     });
+
+    it('should return a 401 error with no token', done => {
+      request.put(`{url}/api/gallery/${this.tempGallery._id}`)
+        .send(exampleGallery)
+        .end((err, res) => {
+          expect(res.status).toEqual(401);
+          done();
+        });
+    });
+
+    it('should return a 400 error without a body', done => {
+      request.put(`{url}/api/gallery/${this.tempGallery._id}`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`,
+        })
+        .end((err, res) => {
+          expect(res.status).toEqual(400);
+          done();
+        });
+    });
+
+    it('should return a 404 error with a valid request but no id', done => {
+      request.put(`{url}/api/gallery/1234`)
+        .send(exampleGallery)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`,
+        })
+        .end((err, res) => {
+          expect(res.status).toEqual(404);
+          done();
+        });
+    });
   });
 });
