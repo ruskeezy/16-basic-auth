@@ -9,16 +9,20 @@
 
 ## User routes
 
-#### POST: `localhost:3000/api/signup` Enter a username, email, and password to sign up
+#### POST REQUEST: `localhost:3000/api/signup` Enter a username, email, and password to sign up
 
-#### GET: `localhost:3000/api/signin` Enter a username and password to sign in 
+#### GET REQUEST: `localhost:3000/api/signin` Enter a username and password to sign in 
 
 ## Gallery Routes
 
-#### POST: `localhost:3000/api/gallery` Create a new gallery 
+#### POST REQUEST: `localhost:3000/api/gallery` Create a new gallery 
 
-#### GET: `localhost:3000/api/gallery/:galleryId` Get a gallery by using a valid ID in the URL
+#### GET REQUEST: `localhost:3000/api/gallery/:galleryId` Get a gallery by using a valid ID in the URL
 
-#### PUT: `localhost:3000/api/gallery/:galleryId` Update a gallery by using a valid ID in the URL
+#### PUT REQUEST: `localhost:3000/api/gallery/:galleryId` Update a gallery by using a valid ID in the URL
 
-#### DELETE: `localhost:3000/api/gallery/:galleryId` Delete a gallery by using a valid ID in the URL
+#### DELETE REQUEST: `localhost:3000/api/gallery/:galleryId` Delete a gallery by using a valid ID in the URL
+
+## Photo Route
+
+#### POST REQUEST: `localhost:3000/api/gallery/:galleryId/photo` Post a photo that belongs to a specific gallery. Make sure to have a photo `tester.png` in the `data` directory to pass all tests.
