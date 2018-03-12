@@ -4,10 +4,11 @@ const request = require('superagent');
 const User = require('../model/user');
 const serverToggle = require('../lib/server-toggle');
 const server = require('../server');
+const PORT = process.env.PORT || 3000;
 
 require('jest');
 
-const url = 'http://localhost:3000';
+const url = `http://localhost:${PORT}`;
 
 const exampleUser = {
   username: 'testuser',
@@ -46,7 +47,6 @@ describe('Auth Routes', function() {
     describe('without a valid request', () => {
       it('should return a 400 error', () => {
         request.post(`${url}/api/signup`)
-          .send({})
           .end((err, res) =>{
             expect(res.status).toEqual(400);
             expect(res.text).toEqual('BadRequestError');
@@ -89,7 +89,6 @@ describe('Auth Routes', function() {
       it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
           .send({})
-          // .auth('fake username', 'fake password')
           .end((err, res) => {
             expect(res.status).toEqual(401);
             expect(res.text).toEqual('UnauthorizedError');

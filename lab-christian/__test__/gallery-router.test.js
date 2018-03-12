@@ -1,16 +1,16 @@
 'use strict';
 
 const request = require('superagent');
-const Promise = require('bluebird');
 const server = require('../server');
 const serverToggle = require('../lib/server-toggle');
+const PORT = process.env.PORT || 3000;
 
 const User = require('../model/user');
 const Gallery = require('../model/gallery');
 
 require('jest');
 
-const url = 'http://localhost:3000';
+const url = `http://localhost:${PORT}`;
 
 const exampleUser = {
   username: 'testuser',
